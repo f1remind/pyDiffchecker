@@ -2,6 +2,7 @@
 import sys
 import hashlib
 import os
+import time
 from functools import partial
 
 #Ignores all extentions mentioned here
@@ -24,15 +25,16 @@ for directory in os.walk('.'):
         if not extention in ignore_extentions:
             filenames.append(dirname + '/' + filename)
 print(len(filenames), "files in total")
-
 hashes = []
 
 print("Collecting hashes for all files..")
 
 i = 0
+start = time.time()
 for filename in filenames:
     if ((i+1)%10 == 0):
-        print(int(i/len(filenames)*10000)/100, "percent checked..")
+        filesPerSecond = i / (time.time() - start)
+        print(int(i/len(filenames)*10000)/100, "percent checked.. Around {} seconds left".format(int(len(filenames)-i/filesPerSecond)))
     i += 1
 
     try:
