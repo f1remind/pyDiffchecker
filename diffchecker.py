@@ -34,7 +34,7 @@ start = time.time()
 for filename in filenames:
     if ((i+1)%10 == 0):
         filesPerSecond = i / (time.time() - start)
-        print(int(i/len(filenames)*10000)/100, "percent checked.. Around {} seconds left".format(int(len(filenames)-i/filesPerSecond)))
+        print(int(i/len(filenames)*10000)/100, "percent checked.. Around {} seconds left".format(int((len(filenames)-i)/filesPerSecond)))
     i += 1
 
     try:
